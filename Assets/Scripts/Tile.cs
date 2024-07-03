@@ -111,8 +111,8 @@ public class Tile : MonoBehaviour
 
         int[] alreadyRotated = new int[neighbours.Length];
 
-        // transform.Rotate(Vector3.back, 90f);
-        transform.RotateAround(transform.position, Vector3.back, 90f);
+         transform.Rotate(Vector3.back, 90f);
+        //transform.RotateAround(transform.position, Vector3.back, 90f);
         RotateCorrectVectorCenter();
         ToRotate(tileID, alreadyRotated, transform.position);
 

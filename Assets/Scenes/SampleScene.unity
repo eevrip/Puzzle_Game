@@ -239,6 +239,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &136832955
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -277,8 +278,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1931756825
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 887947937, guid: 949a6b13e358618439a03ccd2db46d2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -551,6 +552,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &183910358
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -589,8 +591,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1931756825
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -264993164, guid: 949a6b13e358618439a03ccd2db46d2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -815,6 +817,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &211939723
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -853,8 +856,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1931756825
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1925517621, guid: 949a6b13e358618439a03ccd2db46d2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1013,6 +1016,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0.1
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &305878483
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1257,6 +1261,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &442662387
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1295,8 +1300,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1931756825
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1164874170, guid: 85390818afd9ecb4aa89e7195f1c7c0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1515,6 +1520,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &512066966
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1553,8 +1559,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1931756825
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 511574052, guid: 949a6b13e358618439a03ccd2db46d2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1921,7 +1927,7 @@ GameObject:
   - component: {fileID: 909894871}
   - component: {fileID: 909894870}
   m_Layer: 0
-  m_Name: doortexture4
+  m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1965,8 +1971,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2012717403
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d7c050850caf66849b80a6dcd43daa89, type: 3}
   m_Color: {r: 0.6886792, g: 0.6832651, b: 0.6724368, a: 1}
@@ -2048,6 +2054,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &916110649
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2086,8 +2093,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1931756825
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1117756942, guid: 85390818afd9ecb4aa89e7195f1c7c0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2401,6 +2408,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0.1
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &1010532189
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2583,6 +2591,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &1058980562
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2621,8 +2630,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1931756825
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1475031442, guid: 85390818afd9ecb4aa89e7195f1c7c0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2838,6 +2847,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &1105634585
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2876,8 +2886,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1931756825
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -640558710, guid: 85390818afd9ecb4aa89e7195f1c7c0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3140,6 +3150,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 1
 --- !u!212 &1145506459
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3178,8 +3189,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1931756825
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -769894630, guid: 85390818afd9ecb4aa89e7195f1c7c0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3391,6 +3402,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &1198100010
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3429,8 +3441,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1931756825
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1218540387, guid: 85390818afd9ecb4aa89e7195f1c7c0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3709,6 +3721,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &1239537633
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3747,8 +3760,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1931756825
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 133344156, guid: 949a6b13e358618439a03ccd2db46d2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4004,6 +4017,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &1249209025
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4042,8 +4056,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1931756825
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -974899448, guid: 949a6b13e358618439a03ccd2db46d2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4450,6 +4464,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0.1
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &1746902860
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4647,9 +4662,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1931756825
+  m_SortingLayer: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: bf43d8f5ca314cf4cbf4e77bd9fe6f88, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4750,6 +4765,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0.1
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!60 &1798565477
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4916,6 +4932,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &1807188113
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4954,8 +4971,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1931756825
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -175903088, guid: 85390818afd9ecb4aa89e7195f1c7c0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5230,6 +5247,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &1976675280
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5268,8 +5286,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1931756825
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 972308392, guid: 949a6b13e358618439a03ccd2db46d2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5467,6 +5485,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &2118970754
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5505,8 +5524,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1931756825
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1086272896, guid: 949a6b13e358618439a03ccd2db46d2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5687,6 +5706,7 @@ MonoBehaviour:
   thresholdDistancePercentage: 0
   connectedTiles: []
   puzzleManager: {fileID: 0}
+  ToPrint: 0
 --- !u!212 &8700591025488489801
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5725,8 +5745,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1931756825
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1660534127, guid: 85390818afd9ecb4aa89e7195f1c7c0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5888,5 +5908,5 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1268337879}
   - {fileID: 947377281}
-  - {fileID: 1749473198}
   - {fileID: 909894871}
+  - {fileID: 1749473198}
