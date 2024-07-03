@@ -1,3 +1,5 @@
+using System.IO;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
@@ -5,7 +7,7 @@ using static UnityEditor.PlayerSettings;
 
 public class Tile : MonoBehaviour
 {
-    
+
     private int tileID;
     public int TileID => tileID;
     [SerializeField] private Tile[] neighbours;
@@ -27,9 +29,9 @@ public class Tile : MonoBehaviour
     [SerializeField][Range(0f, 1f)] private float thresholdDistancePercentage;
     [SerializeField] private Tile[] connectedTiles;
     [SerializeField] private PuzzleManager puzzleManager;
-
+    public bool ToPrint;
     void Awake()
-    {   
+    {
         tileID = transform.GetSiblingIndex();
         waypointTransform = transform.GetChild(0);
         thresholdAngles = 0.2f;
@@ -40,31 +42,58 @@ public class Tile : MonoBehaviour
         CorrectDistanceCenter = new float[neighbours.Length];
         CorrectDistanceWaypoint = new float[neighbours.Length];
         CorrectAngle = new float[neighbours.Length];
-        
+
         connectedTiles = new Tile[neighbours.Length];
     }
+    string[] data;
     private void Start()
     {
-        
+
         puzzleManager = GetComponentInParent<PuzzleManager>();
-        for (int i = 0; i < neighbours.Length; i++)
+
+        /*   for (int i = 0; i < neighbours.Length; i++)
+        // {
+        //     if (neighbours[i] != null)
+        //   { Vector2 cct = neighbours[i].transform.position - transform.position;
+             CorrectVectorCenter[i] = cct;
+             Vector2 wwt = neighbours[i].TileWaypoint.position - waypointTransform.position;
+
+
+             CorrectDistanceCenter[i] = cct.sqrMagnitude;
+             CorrectDistanceWaypoint[i] = wwt.sqrMagnitude;
+
+             CorrectAngle[i] = Vector2.Dot(cct.normalized, wwt.normalized);
+           }
+       }*/
+        string fullNameDoc = "/PuzzleData/DataTile_" + tileID + ".csv";
+        string path = Application.dataPath + fullNameDoc;
+        StreamReader sr = new StreamReader(path);
+        string line = sr.ReadLine();
+        while (line != "")
         {
-            if (neighbours[i] != null)
-            {
 
-                totNumNeighbours++;
-                Vector2 cct = neighbours[i].transform.position - transform.position;
-                CorrectVectorCenter[i] = cct;
-                Vector2 wwt = neighbours[i].TileWaypoint.position - waypointTransform.position;
+            totNumNeighbours++;
 
+            data = line.Split(';');
 
-                CorrectDistanceCenter[i] = cct.sqrMagnitude;
-                CorrectDistanceWaypoint[i] = wwt.sqrMagnitude;
+            int i = int.Parse(data[0]);
+            float cctx = float.Parse(data[1]);
+            float ccty = float.Parse(data[2]);
 
-                CorrectAngle[i] = Vector2.Dot(cct.normalized, wwt.normalized);
+            float ccD = float.Parse(data[3]);
+            float wwD = float.Parse(data[4]);
+            float angle = float.Parse(data[5]);
 
-            }
+            CorrectVectorCenter[i] = new Vector2(cctx, ccty);
+            CorrectDistanceCenter[i] = ccD;
+            CorrectDistanceWaypoint[i] = wwD;
+
+            CorrectAngle[i] = angle;
+            line = sr.ReadLine();
         }
+
+        sr.Close();
+        // PrintData();
     }
 
     public void UpdatePosition(Vector3 currPos)
@@ -82,7 +111,7 @@ public class Tile : MonoBehaviour
 
         int[] alreadyRotated = new int[neighbours.Length];
 
-       // transform.Rotate(Vector3.back, 90f);
+        // transform.Rotate(Vector3.back, 90f);
         transform.RotateAround(transform.position, Vector3.back, 90f);
         RotateCorrectVectorCenter();
         ToRotate(tileID, alreadyRotated, transform.position);
@@ -172,10 +201,10 @@ public class Tile : MonoBehaviour
     {
         alreadyChecked[tileID] = 1;
         int k = 0;
-       
+
         for (int i = 0; i < neighbours.Length; i++)
         {
-            
+
             if (neighbours[i] != null && connectedTiles[i] == null)
             {
 
@@ -193,7 +222,7 @@ public class Tile : MonoBehaviour
                     offSetAngle <= thresholdAngles)
                 {
                     //neighbours[i].transform.position = transform.position + CorrectVectorCenter[i];
-                   // transform.position = neighbours[i].transform.position - CorrectVectorCenter[i];
+                    // transform.position = neighbours[i].transform.position - CorrectVectorCenter[i];
                     UpdatePosition(neighbours[i].transform.position - CorrectVectorCenter[i]);
                     connectedTiles[i] = neighbours[i];
                     neighbours[i].RemoveNeighbour(tileID);
@@ -214,7 +243,7 @@ public class Tile : MonoBehaviour
             }
         }
 
-        if(k == totNumNeighbours && !isComplete)
+        if (k == totNumNeighbours && !isComplete)
         {
             NeighboursComplete();
         }
@@ -228,7 +257,7 @@ public class Tile : MonoBehaviour
     }
     public void RemoveNeighbour(int tilePos)
     {
-    
+
         connectedTiles[tilePos] = neighbours[tilePos];
         //neighbours[tilePos] = null;
 
@@ -236,5 +265,31 @@ public class Tile : MonoBehaviour
     public Tile GetNeighbour(int position)
     {
         return neighbours[position];
+    }
+
+    public void PrintData()
+    {
+        string fullNameDoc = "/PuzzleData/DataTile_" + tileID + ".csv";
+        string path = Application.dataPath + fullNameDoc;
+        StreamWriter sr = new StreamWriter(path);
+        for (int i = 0; i < neighbours.Length; i++)
+        {
+            if (neighbours[i] != null)
+            {
+
+
+                Vector2 cct = neighbours[i].transform.position - transform.position;
+                
+                Vector2 wwt = neighbours[i].TileWaypoint.position - waypointTransform.position;
+
+                sr.WriteLine(i + ";" + cct.x + ";" + cct.y + ";" + cct.sqrMagnitude + ";" + wwt.sqrMagnitude + ";" + Vector2.Dot(cct.normalized, wwt.normalized));
+               
+
+            }
+        }
+
+
+        sr.WriteLine();
+        sr.Close();
     }
 }
