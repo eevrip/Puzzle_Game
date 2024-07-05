@@ -3,34 +3,35 @@ using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
-//using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class Tile : MonoBehaviour
+
+public class PuzzlePiece : MonoBehaviour
 {
-
+    [SerializeField]private static int totNumPieces;
+     public static int TotNumPieces { get { return totNumPieces; } set { totNumPieces = value; } }
+    [SerializeField] private PuzzlePiece[] neighbours;
     private int tileID;
     public int TileID => tileID;
-    [SerializeField] private PuzzlePiece[] neighbours;
     private Vector2 center;
     public Vector2 TileCenter { get { return center; } set { center = value; } }
     [SerializeField] private Transform waypointTransform;
     private Vector2 waypoint;
     public Transform TileWaypoint { get { return waypointTransform; } set { waypointTransform = value; } }
 
-    private int totNumNeighbours;
+    
     private bool isComplete;
     public bool IsComplete { get { return isComplete; } set { isComplete = value; } }
-    public int TotNumNeighbours { get { return totNumNeighbours; } set { totNumNeighbours = value; } }
+   
     private float[] CorrectAngle;
     private float[] CorrectDistanceCenter;
     private float[] CorrectDistanceWaypoint;
     private Vector3[] CorrectVectorCenter;
     [SerializeField][Range(0f, 1f)] private float thresholdAngles;
     [SerializeField][Range(0f, 1f)] private float thresholdDistancePercentage;
-    [SerializeField] private PuzzlePiece[] connectedTiles;
+    private PuzzlePiece[] connectedTiles;
     [SerializeField] private PuzzleManager puzzleManager;
     private SpriteRenderer spRenderer;
-    public SpriteRenderer SpRenderer =>spRenderer;
+    public SpriteRenderer SpRenderer => spRenderer;
     public bool ToPrint;
     void Awake()
     {
@@ -54,21 +55,8 @@ public class Tile : MonoBehaviour
     {
 
         puzzleManager = PuzzleManager.instance;
-
-        /*   for (int i = 0; i < neighbours.Length; i++)
-        // {
-        //     if (neighbours[i] != null)
-        //   { Vector2 cct = neighbours[i].transform.position - transform.position;
-             CorrectVectorCenter[i] = cct;
-             Vector2 wwt = neighbours[i].TileWaypoint.position - waypointTransform.position;
-
-
-             CorrectDistanceCenter[i] = cct.sqrMagnitude;
-             CorrectDistanceWaypoint[i] = wwt.sqrMagnitude;
-
-             CorrectAngle[i] = Vector2.Dot(cct.normalized, wwt.normalized);
-           }
-       }*/
+        totNumPieces = puzzleManager.totNumPieces;
+       
         string fullNameDoc = "/PuzzleData/DataTile_" + tileID + ".csv";
         string path = Application.dataPath + fullNameDoc;
         StreamReader sr = new StreamReader(path);
@@ -76,7 +64,7 @@ public class Tile : MonoBehaviour
         while (line != "")
         {
 
-            totNumNeighbours++;
+           
 
             data = line.Split(';');
 
@@ -88,22 +76,36 @@ public class Tile : MonoBehaviour
             float wwD = float.Parse(data[4]);
             float angle = float.Parse(data[5]);
 
-            CorrectVectorCenter[i] = new Vector2(cctx, ccty);
-            CorrectDistanceCenter[i] = ccD;
-            CorrectDistanceWaypoint[i] = wwD;
+            int currTileID = FindPosition(i); 
+            if (currTileID != -1)
+            {
+              
+                CorrectVectorCenter[currTileID] = new Vector2(cctx, ccty);
+                CorrectDistanceCenter[currTileID] = ccD;
+                CorrectDistanceWaypoint[currTileID] = wwD;
 
-            CorrectAngle[i] = angle;
+                CorrectAngle[currTileID] = angle;
+            }
             line = sr.ReadLine();
         }
 
         sr.Close();
         // PrintData();
+        RotateCorrectVectorCenter(transform.localEulerAngles.z);
     }
-
+    public int FindPosition(int tileID)
+    {
+       for(int i = 0; i < neighbours.Length; i++) 
+        {
+            if (neighbours[i].TileID == tileID)
+                return i;
+        }
+       return -1;
+    }
     public void UpdatePosition(Vector3 currPos)
     {
 
-        int[] alreadyMoved = new int[neighbours.Length];
+        int[] alreadyMoved = new int[totNumPieces];
 
         Vector3 dx = currPos - transform.position;
         transform.position = currPos;
@@ -113,32 +115,32 @@ public class Tile : MonoBehaviour
     {
 
 
-        int[] alreadyRotated = new int[neighbours.Length];
+        int[] alreadyRotated = new int[totNumPieces];
 
-         transform.Rotate(Vector3.back, 90f);
+        transform.Rotate(Vector3.back, 90f);
         //transform.RotateAround(transform.position, Vector3.back, 90f);
         RotateCorrectVectorCenter();
         ToRotate(tileID, alreadyRotated, transform.position);
 
     }
 
-    public void ToRotate(int tilePos, int[] alreadyRotated, Vector3 pos)
+    public void ToRotate(int tileID, int[] alreadyRotated, Vector3 pos)
     {
 
-        alreadyRotated[tilePos] = 1;
+        alreadyRotated[tileID] = 1;
         for (int i = 0; i < neighbours.Length; i++)
         {
 
             if (connectedTiles[i])
             {
-
-                if (alreadyRotated[i] == 0)
+                int currTileID = neighbours[i].TileID;
+                if (alreadyRotated[currTileID] == 0)
                 {
                     connectedTiles[i].transform.RotateAround(pos, Vector3.back, 90f);
 
                     connectedTiles[i].RotateCorrectVectorCenter();
 
-                    connectedTiles[i].ToRotate(i, alreadyRotated, pos);
+                    connectedTiles[i].ToRotate(currTileID, alreadyRotated, pos);
 
                 }
             }
@@ -148,22 +150,39 @@ public class Tile : MonoBehaviour
     {
         for (int i = 0; i < neighbours.Length; i++)
         {
-            if (neighbours[i] != null && connectedTiles[i] == null)
+            if (connectedTiles[i] == null)
             {
                 CorrectVectorCenter[i] = VectorRotation(CorrectVectorCenter[i], -Mathf.PI / 2f);
 
             }
         }
     }
-    public void RotateCorrectVectorCenter(int tileID)
+    public void RotateCorrectVectorCenter(float angle)
     {
-
-        if (neighbours[tileID] != null && connectedTiles[tileID] == null)
+        float angleRad = angle * Mathf.Deg2Rad;
+       // Debug.Log(tileID + " " + angle + " " + angleRad);
+        for (int i = 0; i < neighbours.Length; i++)
         {
-            CorrectVectorCenter[tileID] = VectorRotation(CorrectVectorCenter[tileID], -Mathf.PI / 2f);
-
-
+            if (connectedTiles[i] == null)
+            {
+                CorrectVectorCenter[i] = VectorRotation(CorrectVectorCenter[i], -angleRad);
+                //rotate the neighbours as well
+                neighbours[i].RotateCorrectVectorCenter(tileID, angleRad);
+            }
         }
+
+    }
+    public void RotateCorrectVectorCenter(int tileID, float radians)
+    {
+        int i = FindPosition(tileID);
+        
+            if (connectedTiles[i] == null)
+            {
+                CorrectVectorCenter[i] = VectorRotation(CorrectVectorCenter[i], -radians);
+                //rotate the neighbours as well
+                
+            }
+        
 
     }
     public Vector3 VectorRotation(Vector3 v, float degrees)
@@ -184,13 +203,14 @@ public class Tile : MonoBehaviour
 
             if (connectedTiles[i])
             {
-
-                if (alreadyMoved[i] == 0)
+                int currTileID = neighbours[i].TileID;
+                
+                    if (alreadyMoved[currTileID] == 0)
                 {
 
                     connectedTiles[i].transform.position = connectedTiles[i].transform.position + dx;// pos + CorrectVectorCenter[i];
 
-                    connectedTiles[i].ToMove(i, alreadyMoved, connectedTiles[i].transform.position, dx);
+                    connectedTiles[i].ToMove(currTileID, alreadyMoved, connectedTiles[i].transform.position, dx);
 
                 }
             }
@@ -198,7 +218,7 @@ public class Tile : MonoBehaviour
     }
     public void IsCorrectPositionNeighbours()
     {
-        int[] alreadyChecked = new int[connectedTiles.Length];
+        int[] alreadyChecked = new int[totNumPieces];
         IsCorrectPosition(alreadyChecked);
     }
     public void IsCorrectPosition(int[] alreadyChecked)
@@ -209,9 +229,9 @@ public class Tile : MonoBehaviour
         for (int i = 0; i < neighbours.Length; i++)
         {
 
-            if (neighbours[i] != null && connectedTiles[i] == null)
+            if (connectedTiles[i] == null)
             {
-
+               
                 Vector2 cc = neighbours[i].transform.position - transform.position;
                 Vector2 ww = neighbours[i].TileWaypoint.position - waypointTransform.position;
                 float distCenter = cc.sqrMagnitude;
@@ -224,7 +244,7 @@ public class Tile : MonoBehaviour
                 if (offSetCenter <= thresholdDistancePercentage * CorrectDistanceCenter[i] &&
                     offSetWaypoint <= thresholdDistancePercentage * CorrectDistanceWaypoint[i] &&
                     offSetAngle <= thresholdAngles)
-                {
+                { Debug.Log(i);
                     //neighbours[i].transform.position = transform.position + CorrectVectorCenter[i];
                     // transform.position = neighbours[i].transform.position - CorrectVectorCenter[i];
                     UpdatePosition(neighbours[i].transform.position - CorrectVectorCenter[i]);
@@ -237,17 +257,18 @@ public class Tile : MonoBehaviour
 
 
             }
-            else if (neighbours[i] != null && connectedTiles[i] != null)
+            else
             {
                 k++;
             }
-            if (alreadyChecked[i] != 1 && connectedTiles[i] != null)
+            int currTileID = neighbours[i].TileID;
+            if (alreadyChecked[currTileID] != 1 && connectedTiles[i] != null)
             {
                 connectedTiles[i].IsCorrectPosition(alreadyChecked);
             }
         }
 
-        if (k == totNumNeighbours && !isComplete)
+        if (k == neighbours.Length && !isComplete)
         {
             NeighboursComplete();
         }
@@ -261,9 +282,10 @@ public class Tile : MonoBehaviour
     }
     public void RemoveNeighbour(int tilePos)
     {
+        int i = FindPosition(tilePos);
 
-        connectedTiles[tilePos] = neighbours[tilePos];
-        //neighbours[tilePos] = null;
+        connectedTiles[i] = neighbours[i];
+        
 
     }
     public PuzzlePiece GetNeighbour(int position)
@@ -278,18 +300,17 @@ public class Tile : MonoBehaviour
         StreamWriter sr = new StreamWriter(path);
         for (int i = 0; i < neighbours.Length; i++)
         {
-            if (neighbours[i] != null)
-            {
+            
 
-
+            int currTileID = neighbours[i].TileID;
                 Vector2 cct = neighbours[i].transform.position - transform.position;
-                
+
                 Vector2 wwt = neighbours[i].TileWaypoint.position - waypointTransform.position;
 
-                sr.WriteLine(i + ";" + cct.x + ";" + cct.y + ";" + cct.sqrMagnitude + ";" + wwt.sqrMagnitude + ";" + Vector2.Dot(cct.normalized, wwt.normalized));
-               
+                sr.WriteLine(currTileID + ";" + cct.x + ";" + cct.y + ";" + cct.sqrMagnitude + ";" + wwt.sqrMagnitude + ";" + Vector2.Dot(cct.normalized, wwt.normalized));
 
-            }
+
+            
         }
 
 

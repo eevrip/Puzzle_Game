@@ -7,7 +7,8 @@ public class DragDrop : MonoBehaviour
    
     private Camera cam;
     private Vector3 offset;
-    private Tile tile;
+    private PuzzlePiece tile;
+    
     private void OnMouseDown()
     {
       
@@ -16,6 +17,7 @@ public class DragDrop : MonoBehaviour
             
             return;
         }
+        PuzzleManager.Sorting.BringToFront(tile.SpRenderer);
         Vector3 mousePos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
         offset = transform.position - mousePos;
     }
@@ -26,9 +28,11 @@ public class DragDrop : MonoBehaviour
         {
             return;
         }
+       
+        //transform.position = currPos;
+       
         Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f);
-        Vector3 currPos = cam.ScreenToWorldPoint(mousePos) + offset; 
-       // transform.position = currPos;
+        Vector3 currPos = cam.ScreenToWorldPoint(mousePos) + offset;
         tile.UpdatePosition(currPos);
     }
     private void OnMouseUp()
@@ -52,6 +56,7 @@ public class DragDrop : MonoBehaviour
         }
         if(Input.GetMouseButtonDown(1)) {
             //transform.Rotate(Vector3.back, 90f);
+            PuzzleManager.Sorting.BringToFront(tile.SpRenderer);
             tile.UpdateRotation();
 
         }
@@ -60,7 +65,7 @@ public class DragDrop : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-        tile = GetComponent<Tile>();
+        tile = GetComponent<PuzzlePiece>();
 
     }
 

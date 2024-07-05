@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Connector : MonoBehaviour
 {
-    [SerializeField] private Tile parentTile;
+    [SerializeField] private PuzzlePiece parentTile;
     private int connectorID;
     private int parentTileID;
     public int ConnectorID => connectorID;
