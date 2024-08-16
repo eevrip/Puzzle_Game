@@ -165,26 +165,13 @@ public class PuzzlePiece : MonoBehaviour
         {
             if (connectedTiles[i] == null)
             {
-                CorrectVectorCenter[i] = VectorRotation(CorrectVectorCenter[i], -angleRad);
-                //rotate the neighbours as well
-                neighbours[i].RotateCorrectVectorCenter(tileID, angleRad);
+                CorrectVectorCenter[i] = VectorRotation(CorrectVectorCenter[i], angleRad);
+                
             }
         }
 
     }
-    public void RotateCorrectVectorCenter(int tileID, float radians)
-    {
-        int i = FindPosition(tileID);
-        
-            if (connectedTiles[i] == null)
-            {
-                CorrectVectorCenter[i] = VectorRotation(CorrectVectorCenter[i], -radians);
-                //rotate the neighbours as well
-                
-            }
-        
-
-    }
+   
     public Vector3 VectorRotation(Vector3 v, float degrees)
     {
         Vector3 u = Vector3.zero;
